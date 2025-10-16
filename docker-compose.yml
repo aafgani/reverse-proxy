@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/ssl/mkcert:/etc/ssl/mkcert:ro
+
+networks:
+  default:
+    external:
+      name: shared-net
